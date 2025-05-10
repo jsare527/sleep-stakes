@@ -1,0 +1,38 @@
+<div class="login-container">
+    <form [formGroup]="form">
+        <h2>Login</h2>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input 
+            type="text" 
+            id="username" 
+            [formControl]="form.controls.username" 
+            [class.invalid]="form.controls.username.invalid && form.controls.username.touched"/>
+
+            @if(form.controls.username.invalid && form.controls.username.touched) {
+                <small>Username is required</small>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input 
+            type="password"
+            id="password"
+            [formControl]="form.controls.password"
+            [class.invalid]="form.controls.password.invalid && form.controls.password.touched"/>
+
+            @if(form.controls.password.invalid && form.controls.password.touched) {
+                <small>Password is required</small>
+            }
+        </div>
+
+        <button [disabled]="form.invalid" (click)="onSubmit()">Login</button>
+    </form>
+
+    @if(error) {
+        <div class="error-message"> {{error}} </div>
+    }
+
+</div>
