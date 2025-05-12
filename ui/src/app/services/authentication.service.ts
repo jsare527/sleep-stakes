@@ -23,19 +23,15 @@ export class AuthenticationService {
   }
 
   getCurrentUser(): Observable<any> {
-    const token = sessionStorage.getItem('auth_token');
-    const headers = new HttpHeaders({ Authorization: token ? `Token ${token}` : ''});
-
-    return this.http.get(`${this.baseUrl}/api/v1/check-auth/`, { headers: headers });
+    return this.http.get(`${this.baseUrl}/api/v1/check-auth/`);
   }
 
   // used in auth.guard.component
   isAuthed(): Observable<boolean> {
     const token = sessionStorage.getItem('auth_token');
     if (token === null) return of(false);
-    const headers = new HttpHeaders({ Authorization: token ? `Token ${token}` : ''});
 
-    return this.http.get(`${this.baseUrl}/api/v1/check-auth/`, { headers: headers })
+    return this.http.get(`${this.baseUrl}/api/v1/check-auth/`)
     .pipe(
       map(() => true),
       catchError(() => of(false))
