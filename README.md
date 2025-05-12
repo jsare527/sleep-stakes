@@ -62,6 +62,14 @@ docker compose exec web python manage.py createsuperuser
 
 Follow the prompts, then you will have a new user. Use this info to login into the app.
 
+#### Access database command line:
+
+```shell
+docker compose exec db psql -U user -W sleep_stakes_dev
+```
+
+The password is **'password'**.
+
 ### Production commands
 
 ignore ts (this shit) for now

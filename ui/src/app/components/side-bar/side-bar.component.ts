@@ -14,9 +14,12 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 })
 export class SideBarComponent {
 
+  // add any view/url here to have the sidebar not show
+  urls: string[] = ['/login'];
+
   constructor(private readonly router: Router) {}
 
   isLoginPage(): boolean {
-    return this.router.url === '/login';
+    return this.urls.includes(this.router.url);
   }
 }
