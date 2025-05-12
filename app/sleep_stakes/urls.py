@@ -23,7 +23,7 @@ from rest_framework.routers import DefaultRouter
 from authentication.views import UserViewSet, UserLogin, check_auth
 
 router = DefaultRouter()
-router.register(r'authentication', UserViewSet)
+router.register(r'users', UserViewSet)
 
 
 urlpatterns = [

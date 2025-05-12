@@ -4,8 +4,6 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 
 from .models import User
 from .serializers import UserSerializer
@@ -28,7 +26,6 @@ class UserLogin(ObtainAuthToken):
             'id': user.pk,
             'username': user.username
         })
-    
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -37,6 +34,6 @@ def check_auth(request):
         'authenticated': True,
         'user': {
             'id': request.user.id,
-            'username': request.user.username
+            'username': request.user.username,
         }
     })

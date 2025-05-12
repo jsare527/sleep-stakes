@@ -1,0 +1,13 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+  
+.app-title {
+    font-weight: bold;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

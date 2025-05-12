@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="toolbar">
+    <span class="app-title">App</span>
+    <span class="spacer"></span>
+  
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      {{ user$ | async }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+</mat-toolbar>
+  
