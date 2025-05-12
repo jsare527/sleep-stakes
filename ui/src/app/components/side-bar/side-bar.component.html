@@ -1,12 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="side" opened class="sidenav">
-      <nav>
-        <button mat-button routerLink="/home" routerLinkActive="active">
-            <mat-icon>home</mat-icon>
-            Home
-        </button>
-      </nav>
-    </mat-sidenav>
+    @if(!isLoginPage()) {
+        <mat-sidenav mode="side" opened class="sidenav">
+            <nav>
+              <button mat-button routerLink="/home" routerLinkActive="active">
+                  <mat-icon>home</mat-icon>
+                  Home
+              </button>
+            </nav>
+          </mat-sidenav>
+    }
   
     <mat-sidenav-content>
       <div class="main-content">

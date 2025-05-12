@@ -22,6 +22,7 @@ export class AuthenticationComponent implements OnInit, OnDestroy {
   constructor(private readonly authService: AuthenticationService, private readonly router: Router) {}
 
   ngOnInit(): void {
+    console.log('here');
     // if user is authed already, send them to home page.
     this.subscriptions.add(
       this.authService.isAuthed().subscribe(authed => {
