@@ -14,7 +14,13 @@ class User(AbstractUser):
 class Hangout(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='hangouts', on_delete=models.SET_NULL, null=True, blank=True) # noqa
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="hangouts",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+    )  # noqa
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
@@ -23,12 +29,14 @@ class Hangout(models.Model):
 
 
 class Vote(models.Model):
-    hangout = models.ForeignKey(Hangout, related_name='votes', on_delete=models.CASCADE)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='vote_made', on_delete=models.CASCADE)
+    hangout = models.ForeignKey(Hangout, related_name="votes", on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="vote_made", on_delete=models.CASCADE
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('hangout', 'user')
+        unique_together = ("hangout", "user")
 
     def __str__(self):
         return f"{self.user.username} voted for {self.hangout.name}"

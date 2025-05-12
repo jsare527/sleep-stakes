@@ -20,16 +20,13 @@ class UserViewSet(viewsets.ModelViewSet):
 class UserLogin(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data,
-                                           context={'request': request})
+        serializer = self.serializer_class(
+            data=request.data, context={"request": request}
+        )
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
+        user = serializer.validated_data["user"]
         token = Token.objects.get(user=user)
-        return Response({
-            'token': token.key,
-            'id': user.pk,
-            'username': user.username
-        })
+        return Response({"token": token.key, "id": user.pk, "username": user.username})
 
 
 class HangoutListCreateViewActive(generics.ListCreateAPIView):
@@ -41,13 +38,15 @@ class HangoutListCreateViewActive(generics.ListCreateAPIView):
         serializer.save(created_by=self.request.user)
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def check_auth(request):
-    return Response({
-        'authenticated': True,
-        'user': {
-            'id': request.user.id,
-            'username': request.user.username,
+    return Response(
+        {
+            "authenticated": True,
+            "user": {
+                "id": request.user.id,
+                "username": request.user.username,
+            },
         }
-    })
+    )
