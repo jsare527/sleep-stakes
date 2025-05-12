@@ -15,12 +15,10 @@ export class AuthenticationService {
     const obj = { username: username, password: password };
     return this.http.post(`${this.baseUrl}/api-user-login/`, obj).pipe(tap((response: any) => {
       sessionStorage.setItem('auth_token', response.token);
-      sessionStorage.setItem('username', response.username);
     }));
   }
 
   logout() {
-    sessionStorage.removeItem('username');
     sessionStorage.removeItem('auth_token');
   }
 
