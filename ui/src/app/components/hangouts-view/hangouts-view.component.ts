@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HangoutsService } from '../../services/hangouts.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { HangoutModel } from '../../models/hangout.model';
 
 @Component({
@@ -17,12 +17,8 @@ export class HangoutsViewComponent implements OnInit, OnDestroy {
   hangouts: HangoutModel[] = [];
 
   ngOnInit(): void {
-    // console logs the hangouts that are active
     this.subscriptions.add(
-      this.hangoutService.getHangouts().subscribe(hangouts => {
-        this.hangouts = hangouts;
-        console.log(this.hangouts);
-      })
+      // add subscription from hangout service here and assign the result to the 'hangouts' array
     );
   }
 
