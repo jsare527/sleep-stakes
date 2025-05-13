@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
-from authentication.views import UserViewSet, UserLogin, check_auth
+from authentication.views import UserViewSet, UserLogin, check_auth, HangoutListCreateViewActive
 
 router = DefaultRouter()
 router.register(r"users", UserViewSet)
@@ -29,8 +29,9 @@ router.register(r"users", UserViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/v1/", include(router.urls)),
     path("api-user-login/", UserLogin.as_view()),
+    path("api/v1/", include(router.urls)),
+    path("api/v1/hangouts", HangoutListCreateViewActive.as_view()),
     path("api/v1/check-auth/", check_auth),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     re_path(r"^$", RedirectView.as_view(url=reverse_lazy("api-root"), permanent=False)),
