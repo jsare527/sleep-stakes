@@ -1,0 +1,36 @@
+<mat-toolbar class="toolbar">
+    <button type="button" mat-icon-button (click)="toggleSideNav()" class="toggle-button">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <div class="app-title" style="cursor: pointer;" routerLink="/home">
+        App
+    </div>
+    <span class="spacer"></span>
+  
+    <button mat-button [matMenuTriggerFor]="userMenu">
+      {{ user$ | async }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav mode="side" [opened]="isSideNavOpen" class="sidenav">
+        <nav>
+          <button mat-button routerLink="/home" routerLinkActive="active" class="nav-button">
+              <mat-icon>home</mat-icon>
+              Home
+          </button>
+          <button mat-button routerLink="/hangouts" routerLinkActive="active" class="nav-button">
+            <mat-icon>groups</mat-icon>
+            Hangouts
+          </button>
+        </nav>
+      </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="main-content">
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

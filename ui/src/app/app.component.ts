@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { TopBarComponent } from "./components/top-bar/top-bar.component";
-import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { TopSideBarComponent } from "./components/top-side-bar/top-side-bar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TopBarComponent, SideBarComponent],
+  imports: [RouterOutlet, TopSideBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'ui';
 
+  // include any urls here to hide the top and side nav from the view
+  urls: string[] = ['/login'];
+
   constructor(private readonly router: Router) {}
 
-  isLoginPage(): boolean {
-    return this.router.url === '/login';
+  hideSideTopNav(): boolean {
+    return this.urls.includes(this.router.url);
   }
 }

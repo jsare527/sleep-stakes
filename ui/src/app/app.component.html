@@ -1,4 +1,5 @@
-@if(!isLoginPage()) {
-  <app-top-bar></app-top-bar>
+@if(!hideSideTopNav()) {
+  <app-top-side-bar></app-top-side-bar>
+} @else {
+  <router-outlet />
 }
-<app-side-bar></app-side-bar>
