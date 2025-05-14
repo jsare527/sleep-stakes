@@ -8,5 +8,6 @@ export const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: AuthenticationComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-    { path: 'hangouts', component: HangoutsViewComponent, canActivate: [AuthGuard] }
+    { path: 'hangouts', component: HangoutsViewComponent, canActivate: [AuthGuard] },
+    { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

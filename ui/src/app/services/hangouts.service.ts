@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { HangoutModel } from '../models/hangout.model';
 
@@ -8,11 +7,11 @@ import { HangoutModel } from '../models/hangout.model';
   providedIn: 'root'
 })
 export class HangoutsService {
-  baseUrl = environment.baseUrl;
+  baseUrl = '/api/v1';
 
   constructor(private readonly http: HttpClient) { }
 
   getHangouts(): Observable<HangoutModel[]> {
-    return this.http.get<HangoutModel[]>(`${this.baseUrl}/api/v1/hangouts`);
+    return this.http.get<HangoutModel[]>(`${this.baseUrl}/hangouts`);
   }
 }

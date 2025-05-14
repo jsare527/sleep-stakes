@@ -1,19 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, take, tap } from 'rxjs';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  baseUrl = environment.baseUrl;
+  baseUrl = '/api/v1';
 
   constructor(private readonly http: HttpClient) {}
 
   login(username: string, password: string) {
     const obj = { username: username, password: password };
-    return this.http.post(`${this.baseUrl}/api-user-login/`, obj).pipe(tap((response: any) => {
+    return this.http.post(`${this.baseUrl}/login/`, obj).pipe(tap((response: any) => {
       sessionStorage.setItem('auth_token', response.token);
     }));
   }
@@ -23,7 +22,7 @@ export class AuthenticationService {
   }
 
   getCurrentUser(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/api/v1/check-auth/`);
+    return this.http.get(`${this.baseUrl}/check-auth/`);
   }
 
   // used in auth.guard.component
@@ -31,7 +30,7 @@ export class AuthenticationService {
     const token = sessionStorage.getItem('auth_token');
     if (token === null) return of(false);
 
-    return this.http.get(`${this.baseUrl}/api/v1/check-auth/`)
+    return this.http.get(`${this.baseUrl}/check-auth/`)
     .pipe(
       map(() => true),
       catchError(() => of(false))

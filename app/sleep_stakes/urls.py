@@ -29,7 +29,7 @@ router.register(r"users", UserViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api-user-login/", UserLogin.as_view()),
+    path("api/v1/login/", UserLogin.as_view()),
     path("api/v1/", include(router.urls)),
     path("api/v1/hangouts", HangoutListCreateViewActive.as_view()),
     path("api/v1/check-auth/", check_auth),

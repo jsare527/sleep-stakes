@@ -7,6 +7,8 @@ from rest_framework.authtoken.models import Token
 
 
 class User(AbstractUser):
+    profile_pic = models.ImageField(default="/")
+
     def __str__(self):
         return self.username
 

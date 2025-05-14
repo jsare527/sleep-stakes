@@ -3,3 +3,4 @@ djangorestframework==3.16.0
 django-cors-headers==4.7.0
 psycopg2-binary==2.9.6
 gunicorn==21.2.0
+pillow==11.2.1
