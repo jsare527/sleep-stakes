@@ -43,10 +43,7 @@ class HangoutListCreateViewActive(generics.ListCreateAPIView):
 def check_auth(request):
     return Response(
         {
-            "authenticated": True,
-            "user": {
-                "id": request.user.id,
-                "username": request.user.username,
-            },
+            "id": request.user.id,
+            "username": request.user.username,
         }
     )

@@ -28,7 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 export class TopSideBarComponent {
   constructor(private readonly router: Router, private readonly authService: AuthenticationService) {}
   isSideNavOpen: boolean = true;
-  user$ = this.authService.getCurrentUser().pipe(map(data => data.user.username ?? ''));
+  user$ = this.authService.getCurrentUser().pipe(map(user => user.username ?? ''));
 
   logout() {
     this.authService.logout();
