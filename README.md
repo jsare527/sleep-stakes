@@ -7,6 +7,7 @@ You can make your own virtual environment if you want, but it's not needed. Run:
 ```shell
 python -m venv <name>
 source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 First line creates the virtual env, the second one activates it. then run ```pip install -r requirements.txt``` in the /app directory
