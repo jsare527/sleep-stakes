@@ -14,8 +14,21 @@ class UserSerializer(serializers.ModelSerializer):
 class HangoutSerializer(serializers.ModelSerializer):
     created_by = UserSerializer(read_only=True)
     members = UserSerializer(many=True, read_only=True)
+    members_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Hangout
-        fields = ("id", "name", "description", "created_by", "created_at", "is_active", "members")
+        fields = (
+            "id",
+            "name",
+            "description",
+            "created_by",
+            "created_at",
+            "is_active",
+            "members",
+            "members_count",
+        )
         read_only_fields = ("created_by", "created_at", "is_active", "id", "members")
+
+    def get_members_count(self, obj):
+        return obj.members.count()

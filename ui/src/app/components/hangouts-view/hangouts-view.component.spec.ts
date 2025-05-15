@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CommonModule } from '@angular/common';
 import { HangoutsViewComponent } from './hangouts-view.component';
 
 describe('HangoutsViewComponent', () => {
@@ -8,7 +8,7 @@ describe('HangoutsViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HangoutsViewComponent]
+      imports: [HangoutsViewComponent, CommonModule]
     })
     .compileComponents();
     

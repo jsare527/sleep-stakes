@@ -14,4 +14,8 @@ export class HangoutsService {
   getHangouts(): Observable<HangoutModel[]> {
     return this.http.get<HangoutModel[]>(`${this.baseUrl}/hangouts`);
   }
+
+  getInactiveHangouts(): Observable<HangoutModel[]> {
+    return this.http.get<HangoutModel[]>(`${this.baseUrl}/hangouts/inactive/`);
+  }  
 }

@@ -30,9 +30,30 @@ class UserLogin(ObtainAuthToken):
 
 
 class HangoutListCreateViewActive(generics.ListCreateAPIView):
-    queryset = Hangout.objects.filter(is_active=True)
     serializer_class = HangoutSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return (
+            Hangout.objects.filter(is_active=True)
+            .select_related("created_by")
+            .prefetch_related("members")
+        )
+
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
+
+class HangoutListCreateViewInactive(generics.ListCreateAPIView):
+    serializer_class = HangoutSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return (
+            Hangout.objects.filter(is_active=False)
+            .select_related("created_by")
+            .prefetch_related("members")
+        )
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)

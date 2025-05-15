@@ -1,1 +1,12 @@
-<p>hangouts-view works!</p>
+<div class="hangouts-list">
+    <div class="hangout-card" *ngFor="let hangout of hangouts">
+      <h2>{{ hangout.name }}</h2>
+      <p>{{ hangout.description }}</p>
+      <small>Created by: {{ hangout.created_by.username }}</small><br />
+      <div *ngFor="let member of hangout.members">
+        Members: {{ member.username }}
+      </div>
+      <small>Members Count: {{ hangout.members_count }}</small>
+    </div>
+  </div>
+  <div *ngIf="hangouts.length === 0">No hangouts found.</div>
