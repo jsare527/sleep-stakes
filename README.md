@@ -21,6 +21,11 @@ Run and build dev containers:
 ```shell
 docker compose up -d --build
 ```
+Create Super User to get into the Django Admin Service
+
+```shell
+docker-compose exec web python manage.py createsuperuser
+```
 
 After running this command, the application is available at http://localhost:4200/
 
