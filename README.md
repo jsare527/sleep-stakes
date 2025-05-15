@@ -1,3 +1,17 @@
+
+# Sleep Stakes 
+
+A full-stack web app where friends can create hangouts and bet on who will fall asleep first.
+
+---
+
+## Tech Stack
+
+- **Frontend**: Angular
+- **Backend**: Django + Django REST Framework
+- **Database**: PostgreSQL
+- **Containerized with**: Docker + Docker Compose
+
 ## Requirements
 
 **All you need is docker to be installed.**
