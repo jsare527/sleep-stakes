@@ -18,4 +18,8 @@ export class HangoutsService {
   getInactiveHangouts(): Observable<HangoutModel[]> {
     return this.http.get<HangoutModel[]>(`${this.baseUrl}/hangouts/inactive/`);
   }  
+
+  getHangoutById(id: number): Observable<HangoutModel> {
+    return this.http.get<HangoutModel>(`${this.baseUrl}/hangouts/${id}/`);
+  }
 }

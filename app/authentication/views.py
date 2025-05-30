@@ -4,6 +4,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import RetrieveAPIView
 
 from .models import User
 from .models import Hangout
@@ -57,6 +58,12 @@ class HangoutListCreateViewInactive(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user)
+
+
+class HangoutDetailView(RetrieveAPIView):
+    queryset = Hangout.objects.select_related('created_by').prefetch_related('members')
+    serializer_class = HangoutSerializer
+    permission_classes = [IsAuthenticated]
 
 
 @api_view(["GET"])

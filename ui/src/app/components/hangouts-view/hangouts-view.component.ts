@@ -44,4 +44,9 @@ export class HangoutsViewComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
+
+  goToDetail(hangoutId: number): void {
+    console.log('Navigating to hangout detail with ID:', hangoutId);
+    this.router.navigate(['/hangout', hangoutId]);
+  }
 }

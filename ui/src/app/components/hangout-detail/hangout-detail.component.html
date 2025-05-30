@@ -1,0 +1,14 @@
+<div *ngIf="hangout" class="container">
+  <h1>{{ hangout.name }}</h1>
+  <p>{{ hangout.description }}</p>
+  <p>Created by: {{ hangout.created_by.username }}</p>
+
+  <h3>Members</h3>
+  <ul>
+    <li *ngFor="let member of hangout.members">
+      {{ member.username }}
+    </li>
+  </ul>
+
+  <p class="total-members">Total members: {{ hangout.members_count }}</p>
+</div>

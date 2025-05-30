@@ -1,5 +1,5 @@
 <div class="hangouts-list">
-    <div class="hangout-card" *ngFor="let hangout of hangouts">
+    <div class="hangout-card" *ngFor="let hangout of hangouts" (click)="goToDetail(hangout.id)">
       <h2>{{ hangout.name }}</h2>
       <p>{{ hangout.description }}</p>
       <small>Created by: {{ hangout.created_by.username }}</small><br />
